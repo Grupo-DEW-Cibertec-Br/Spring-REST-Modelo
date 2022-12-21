@@ -56,4 +56,4 @@ jobs:
           app-name: 'demogradleapi'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_843DC0D88EEF448CA879143EE5E86114 }}
-          package: '*.jar'
+          package: 'Spring-REST-Modelo-0.0.1-SNAPSHOT.jar'

@@ -21,20 +21,14 @@ jobs:
         with:
           java-version: '17'
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-        
-      - name: Run build with Gradle Wrapper
-        run: ./gradlew build
+      - name: Build with Maven
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/build/libs/*.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,5 +49,5 @@ jobs:
         with:
           app-name: 'demogradleapi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4906101DB2C54F2788DF5660D6E90561 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_843DC0D88EEF448CA879143EE5E86114 }}
           package: '*.jar'
